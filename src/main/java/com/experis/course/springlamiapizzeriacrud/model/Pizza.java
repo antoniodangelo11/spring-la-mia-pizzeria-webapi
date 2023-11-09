@@ -13,7 +13,7 @@ public class Pizza {
     private Integer id;
     private String name;
     private String description;
-    private String photo_url;
+    private String photoUrl;
     private float price;
 
     // GETTER E SETTER
@@ -31,7 +31,7 @@ public class Pizza {
     }
 
     public String getPhotoUrl() {
-        return photo_url;
+        return photoUrl;
     }
 
     public float getPrice() {
@@ -51,7 +51,7 @@ public class Pizza {
     }
 
     public void setPhotoUrl(String photoUrl) {
-        this.photo_url = photoUrl;
+        this.photoUrl = photoUrl;
     }
 
     public void setPrice(float price) {
