@@ -1,0 +1,7 @@
+INSERT INTO pizzas(name, description, photo_url, price)VALUES('Pizza Margherita', 'Pomodoro e mozzarella','https://primochef.it/wp-content/uploads/2019/08/SH_pizza_fatta_in_casa-1200x800.jpg.webp', 8.99);
+INSERT INTO pizzas(name, description, photo_url, price)VALUES('Pizza Pepperoni', 'Peperoni, cipolla, olive nere', 'https://www.ilovevegan.it/wp-content/uploads/2017/06/vegpizza-e1498805143460-1300x967.jpg', 10.99);
+INSERT INTO pizzas(name, description, photo_url, price)VALUES('Pizza Diavola', 'Salsiccia piccante, peperoncino,formaggio', 'https://s3.eu-central-1.amazonaws.com/quomi/media/133057/conversions/Pizza-Diavola-thumb-big.jpg',  11.99);
+INSERT INTO pizzas(name, description, photo_url, price)VALUES('Pizza Vegetariana', 'Melanzane, zucchine, peperoni', 'https://www.guardini.com/images/guardinispa/ricette/full/pizza_set_2021_full.jpg', 9.99);
+INSERT INTO pizzas(name, description, photo_url, price)VALUES('Pizza Quattro Stagioni', 'Prosciutto, funghi, carciofi e olive.', 'https://www.petitchef.it/imgupl/recipe/pizza-quattro-stagioni--327908p533338.jpg', 10.99);
+INSERT INTO pizzas(name, description, photo_url, price)VALUES('Pizza Prosciutto e Funghi', 'Prosciutto crudo, funghi, rucola', 'https://www.pizzeriasenzatempo.it/wp-content/uploads/2020/04/PROSCIUTTO-E-FUNGHI.jpg', 12.99);
+INSERT INTO pizzas(name, description, photo_url, price)VALUES('Pizza Gorgonzola e Pere', 'Gorgonzola, noci, pere', 'https://www.dolcidee.it/media/uploads/recipe/7609280.jpg', 11.99);
