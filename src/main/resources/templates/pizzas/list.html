@@ -6,6 +6,20 @@
 <div class="container">
     <h1 class="text-light">Pizza List</h1>
     <hr>
+    <div class="d-flex align-items-center justify-content-between">
+        <h1>Pizza List</h1>
+        <form th:action="@{/pizzas}" method="GET">
+            <div class="input-group">
+                <input
+                        type="text"
+                        placeholder="Search by name"
+                        class="form-control" name="search"
+                        th:value="${param.search}"
+                >
+                <button class="btn btn-secondary" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
     <table th:if="${pizzaList.size() > 0}" class="table table-dark">
         <thead>
         <tr>
@@ -13,6 +27,7 @@
             <th>Description</th>
             <th>Photo</th>
             <th>Price</th>
+            <th>Details</th>
         </tr>
         </thead>
         <tbody>
@@ -21,6 +36,9 @@
             <td th:text="*{description}"></td>
             <td><img class="d-block h-25 w-25" th:src="*{photoUrl}"></td>
             <td th:text="*{price}"></td>
+            <td>
+               <a th:href="@{pizzas/show/{id}(id=*{id})}" title="details"><i class="fa-solid fa-book"></i></a>
+            </td>
         </tr>
         </tbody>
     </table>
