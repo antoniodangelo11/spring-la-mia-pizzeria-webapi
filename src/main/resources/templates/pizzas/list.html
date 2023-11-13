@@ -4,6 +4,9 @@
 <body class="bg-dark">
 <nav th:replace="fragments/navbar :: topNavbar('pizzas')"></nav>
 <div class="container">
+    <div class="my-3">
+        <a th:href="@{/pizzas/create}" class="btn btn-primary">Add new pizza</a>
+    </div>
     <h1 class="text-light">Pizza List</h1>
     <hr>
     <div class="d-flex align-items-center justify-content-between">
