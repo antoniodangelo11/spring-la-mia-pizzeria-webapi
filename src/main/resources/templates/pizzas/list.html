@@ -4,6 +4,10 @@
 <body class="bg-dark">
 <nav th:replace="fragments/navbar :: topNavbar('pizzas')"></nav>
 <div class="container">
+    <div th:if="${message !=null}" class="alert alert-success alert-dismissible fade show">
+        <span th:text="${message}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <div class="my-3">
         <a th:href="@{/pizzas/create}" class="btn btn-primary">Add new pizza</a>
     </div>
@@ -31,6 +35,8 @@
             <th>Photo</th>
             <th>Price</th>
             <th>Details</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -40,7 +46,25 @@
             <td><img class="d-block h-25 w-25" th:src="*{photoUrl}"></td>
             <td th:text="*{price}"></td>
             <td>
-               <a th:href="@{pizzas/show/{id}(id=*{id})}" title="details"><i class="fa-solid fa-book"></i></a>
+                <button class="btn btn-secondary">
+                    <a class="text-light" th:href="@{pizzas/show/{id}(id=*{id})}" title="details">
+                        <i class="fa-solid fa-book"></i></a>
+                </button>
+
+            </td>
+            <td>
+                <button class="btn btn-secondary">
+                    <a class="text-light" th:href="@{/pizzas/edit/{id}(id=*{id})}" title="edit">
+                        <i class="fa-solid fa-pen-to-square"></i></a>
+                </button>
+
+            </td>
+            <td>
+                <form method="POST" th:action="@{/pizzas/delete/{id}(id=*{id})}"
+                      onsubmit="return confirm('Are you sure?')">
+                    <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </form>
             </td>
         </tr>
         </tbody>
