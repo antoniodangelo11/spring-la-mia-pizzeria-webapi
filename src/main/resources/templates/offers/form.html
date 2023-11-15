@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="isEdit=${specialOffer.id != null}">
+<head
+        th:insert="fragments/resources :: headResources(${isEdit ? 'Edit SpecialOffer' : 'Create SpecialOffer'})"></head>
+<body>
+<nav th:replace="fragments/navbar :: topNavbar('pizzas')"></nav>
+<div class="container">
+    <h1 th:text="${isEdit ? 'Edit SpecialOffer' : 'Create Special Offer'}"></h1>
+    <hr>
+    <form
+            th:with="actionUrl=${isEdit ? '/offers/edit/'+specialOffer.id : '/offers/create'}"
+            id="SpecialOffer-form"
+            th:action="@{${actionUrl}}"
+            method="POST"
+            th:object="${specialOffer}"
+            class="row"
+    >
+        <input type="hidden" th:field="*{pizza}">
+        <div class="col-12"
+             th:insert="fragments/components :: formField('text', 'Title', 'title')"></div>
+        <div class="col-6"
+             th:insert="fragments/components :: formField('date', 'Start Date', 'startDate')"></div>
+        <div class="col-6"
+             th:insert="fragments/components :: formField('date', 'End Date', 'endDate')"></div>
+        <div class="col-12">
+            <hr>
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

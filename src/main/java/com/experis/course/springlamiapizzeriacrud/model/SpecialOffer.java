@@ -12,14 +12,12 @@ public class SpecialOffer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
     private String title;
 
-    @NotNull
+
     private LocalDate startDate;
     private LocalDate endDate;
 
-    @NotNull
     @ManyToOne
     private Pizza pizza;
 

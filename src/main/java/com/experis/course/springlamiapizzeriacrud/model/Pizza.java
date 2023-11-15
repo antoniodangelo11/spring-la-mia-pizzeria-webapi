@@ -3,6 +3,9 @@ package com.experis.course.springlamiapizzeriacrud.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "pizzas")
 public class Pizza {
@@ -29,45 +32,57 @@ public class Pizza {
     @Max(value = 255, message = "Length must be less than 255")
     private float price;
 
+    @OneToMany(mappedBy = "pizza")
+    private List<SpecialOffer> specialOffers = new  ArrayList<>();
+
     // GETTER E SETTER
+
 
     public Integer getId() {
         return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public float getPrice() {
-        return price;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
     }
 
+    public float getPrice() {
+        return price;
+    }
+
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public List<SpecialOffer> getSpecialOffers() {
+        return specialOffers;
+    }
+
+    public void setSpecialOffers(List<SpecialOffer> specialOffers) {
+        this.specialOffers = specialOffers;
     }
 }
