@@ -9,6 +9,16 @@
 <nav th:replace="fragments/navbar :: topNavbar('pizzas')"></nav>
 
 <div class="container text-light" th:object="${pizza}">
+    <!-- <h3>Ingredients</h3>
+    <ul th:if="{ingredients.size() >0 }">
+        <li th:each="ingredientObj :{ingredients}" th:text="${ingredientObj.name}"></li>
+    </ul>
+    <div th:unless="*{ingredients.size() > 0}" class="alert alert-ingo">The list is empty</div>
+    <hr> -->
+    <div th:if="${message !=null}" class="alert alert-success alert-dismissible fade show">
+        <span th:text="${message}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <dl>
         <dt>Name</dt>
         <dd th:text="*{name}"></dd>

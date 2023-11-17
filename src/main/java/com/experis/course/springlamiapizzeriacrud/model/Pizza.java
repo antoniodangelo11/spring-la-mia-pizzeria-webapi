@@ -35,8 +35,19 @@ public class Pizza {
     @OneToMany(mappedBy = "pizza")
     private List<SpecialOffer> specialOffers = new  ArrayList<>();
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Ingredient> ingredients;
+
     // GETTER E SETTER
 
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
 
     public Integer getId() {
         return id;

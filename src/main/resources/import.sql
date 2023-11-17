@@ -5,3 +5,20 @@ INSERT INTO pizzas(name, description, photo_url, price)VALUES('Pizza Vegetariana
 INSERT INTO pizzas(name, description, photo_url, price)VALUES('Pizza Quattro Stagioni', 'Prosciutto, funghi, carciofi e olive.', 'https://www.petitchef.it/imgupl/recipe/pizza-quattro-stagioni--327908p533338.jpg', 10.99);
 INSERT INTO pizzas(name, description, photo_url, price)VALUES('Pizza Prosciutto e Funghi', 'Prosciutto crudo, funghi, rucola', 'https://www.pizzeriasenzatempo.it/wp-content/uploads/2020/04/PROSCIUTTO-E-FUNGHI.jpg', 12.99);
 INSERT INTO pizzas(name, description, photo_url, price)VALUES('Pizza Gorgonzola e Pere', 'Gorgonzola, noci, pere', 'https://www.dolcidee.it/media/uploads/recipe/7609280.jpg', 11.99);
+
+INSERT INTO ingredients(name) VALUES('Peperoni');
+INSERT INTO ingredients(name) VALUES('Funghi');
+INSERT INTO ingredients(name) VALUES('Mozzarella');
+INSERT INTO ingredients(name) VALUES('Pomodoro');
+INSERT INTO ingredients(name) VALUES('Cipolla');
+INSERT INTO ingredients(name) VALUES('Peperoncino');
+INSERT INTO ingredients(name) VALUES('Zucchine');
+INSERT INTO ingredients(name) VALUES('Noci');
+INSERT INTO ingredients(name) VALUES('Prosciutto crudo');
+INSERT INTO ingredients(name) VALUES('Rucola');
+INSERT INTO ingredients(name) VALUES('Formaggio');
+INSERT INTO ingredients(name) VALUES('Olive nere');
+INSERT INTO ingredients(name) VALUES('Pere');
+INSERT INTO ingredients(name) VALUES('Salsiccia');
+INSERT INTO ingredients(name) VALUES('Salsiccia piccante');
+INSERT INTO ingredients(name) VALUES('Gorgonzola');

@@ -76,9 +76,11 @@ public class SpecialOfferController {
         SpecialOffer specialOfferToDelete = specialOfferRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         specialOfferRepository.delete(specialOfferToDelete);
-        redirectAttributes.addFlashAttribute("message",
-                "Special Offer " + specialOfferToDelete.getPizza() + " deleted!");
+        redirectAttributes.addFlashAttribute(
+                "message",
+                "Special Offer "
+                        + specialOfferToDelete.getPizza().getName()
+                        + " deleted!");
         return "redirect:/pizzas/show/" + specialOfferToDelete.getPizza().getId();
     }
-
 }

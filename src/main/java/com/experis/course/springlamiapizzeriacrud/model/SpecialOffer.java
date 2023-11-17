@@ -14,10 +14,10 @@ public class SpecialOffer {
 
     private String title;
 
-
     private LocalDate startDate;
     private LocalDate endDate;
 
+    @NotNull
     @ManyToOne
     private Pizza pizza;
 
