@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 
 <head th:insert="fragments/resources :: headResources('Pizza List')"></head>
 
@@ -36,6 +36,7 @@
         <a th:href="@{/pizzas}" class="btn btn-secondary">Back to list</a>
     </div>
 
+    <section sec:authorize="hasAuthority('ADMIN')">
     <h2>Special Offer
         <a
                 th:href="@{/offers/create(pizzaId=*{id})}"
@@ -75,12 +76,13 @@
         </tbody>
     </table>
     <div th:if="*{SpecialOffers.size() == 0}" class="alert alert-info">The list is empty</div>
+        <div class="mt-2">
+            <a th:href="@{/pizzas}" class="btn btn-primary">Back to list</a>
+        </div>
     </section>
 
 
-    <div class="mt-2">
-        <a th:href="@{/pizzas}" class="btn btn-primary">Back to list</a>
-    </div>
+
 </div>
 </div>
 

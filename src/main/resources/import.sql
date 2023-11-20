@@ -22,3 +22,13 @@ INSERT INTO ingredients(name) VALUES('Pere');
 INSERT INTO ingredients(name) VALUES('Salsiccia');
 INSERT INTO ingredients(name) VALUES('Salsiccia piccante');
 INSERT INTO ingredients(name) VALUES('Gorgonzola');
+
+INSERT INTO roles (id, name) VALUES(1, 'ADMIN');
+INSERT INTO roles (id, name) VALUES(2, 'USER');
+
+INSERT INTO users (email, first_name, last_name, registered_at, password) VALUES('antonio@email.com', 'Antonio', 'Rossi', '2023-11-20 16:00', '{noop}antonio');
+INSERT INTO users (email, first_name, last_name, registered_at, password) VALUES('valeria@email.com', 'Valeria', 'Bianchi', '2023-11-20 16:20','{noop}jane');
+
+INSERT INTO users_roles (user_id, roles_id) VALUES(1, 1);
+INSERT INTO users_roles (user_id, roles_id) VALUES(1, 2);
+INSERT INTO users_roles (user_id, roles_id) VALUES(2, 2);

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 <head th:insert="fragments/resources :: headResources('Pizza List')"></head>
 <body class="bg-dark">
 <nav th:replace="fragments/navbar :: topNavbar('pizzas')"></nav>
@@ -8,7 +8,7 @@
         <span th:text="${message}"></span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <div class="my-3">
+    <div class="my-3" sec:authorize="hasAuthority('ADMIN')">
         <a th:href="@{/pizzas/create}" class="btn btn-primary">Add new pizza</a>
     </div>
     <h1 class="text-light">Pizza List</h1>
@@ -35,8 +35,8 @@
             <th>Photo</th>
             <th>Price</th>
             <th>Details</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Edit</th>
+            <th sec:authorize="hasAuthority('ADMIN')">Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -53,7 +53,7 @@
 
             </td>
             <td>
-                <button class="btn btn-secondary">
+                <button class="btn btn-secondary" sec:authorize="hasAuthority('ADMIN')">
                     <a class="text-light" th:href="@{/pizzas/edit/{id}(id=*{id})}" title="edit">
                         <i class="fa-solid fa-pen-to-square"></i></a>
                 </button>
@@ -61,7 +61,8 @@
             </td>
             <td>
                 <form method="POST" th:action="@{/pizzas/delete/{id}(id=*{id})}"
-                      onsubmit="return confirm('Are you sure?')">
+                      onsubmit="return confirm('Are you sure?')"
+                      sec:authorize="hasAuthority('ADMIN')">
                     <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i>
                     </button>
                 </form>
