@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/offers")
 public class SpecialOfferController {
@@ -32,6 +35,9 @@ public class SpecialOfferController {
                 .orElseThrow(() -> new PizzaNotFoundException("Pizza not " + "found"));
 
         SpecialOffer specialOffer = new SpecialOffer();
+
+        specialOffer.setStartDate(LocalDate.now());
+        specialOffer.setEndDate(LocalDate.now().plusMonths(5));
         specialOffer.setPizza(pizza);
 
         model.addAttribute("specialOffer", specialOffer);
@@ -50,12 +56,13 @@ public class SpecialOfferController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
-        try {
-            SpecialOffer specialOffer = specialOfferRepository.getReferenceById(id);
-            model.addAttribute("specialOffer", specialOffer);
+        Optional<SpecialOffer> result = specialOfferRepository.findById(id);
+
+        if (result.isPresent()) {
+            model.addAttribute("specialOffer", result.get());
             return "offers/form";
-        } catch (SpecialOfferNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "special offer with id " + id + " not found");
         }
     }
 
@@ -65,22 +72,33 @@ public class SpecialOfferController {
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "offers/form";
+        } else {
+            SpecialOffer specialOfferToEdit = specialOfferRepository.findById(id)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+
+            specialOfferToEdit.setTitle(formSpecialOffer.getTitle());
+            specialOfferToEdit.setStartDate(formSpecialOffer.getStartDate());
+            specialOfferToEdit.setEndDate(formSpecialOffer.getEndDate());
+
+
+            SpecialOffer savedSpecialOffer = specialOfferRepository.save(formSpecialOffer);
+            return "redirect:/pizzas/show/" + savedSpecialOffer.getId();
         }
-        SpecialOffer savedSpecialOffer = specialOfferRepository.save(formSpecialOffer);
-        return "redirect:/pizzas/show/" + savedSpecialOffer.getId();
     }
 
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
-
+    public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes){
         SpecialOffer specialOfferToDelete = specialOfferRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        specialOfferRepository.delete(specialOfferToDelete);
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        specialOfferRepository.deleteById(id);
         redirectAttributes.addFlashAttribute(
                 "message",
-                "Special Offer "
+                "Discount "
+                        + specialOfferToDelete.getTitle()
+                        + " of "
                         + specialOfferToDelete.getPizza().getName()
-                        + " deleted!");
-        return "redirect:/pizzas/show/" + specialOfferToDelete.getPizza().getId();
+                        + " deleted!"
+        );
+        return "redirect:/pizzas/show/"  + specialOfferToDelete.getPizza().getId();
     }
 }
