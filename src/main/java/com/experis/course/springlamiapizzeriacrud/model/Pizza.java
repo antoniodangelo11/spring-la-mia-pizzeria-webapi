@@ -1,5 +1,6 @@
 package com.experis.course.springlamiapizzeriacrud.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
@@ -33,6 +34,7 @@ public class Pizza {
     private float price;
 
     @OneToMany(mappedBy = "pizza")
+    @JsonIgnore
     private List<SpecialOffer> specialOffers = new  ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY)

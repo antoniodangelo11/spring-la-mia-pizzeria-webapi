@@ -8,10 +8,11 @@
         <span th:text="${message}"></span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+    <h1 class="text-light">Pizza List</h1>
+    <hr>
     <div class="my-3" sec:authorize="hasAuthority('ADMIN')">
         <a th:href="@{/pizzas/create}" class="btn btn-primary">Add new pizza</a>
     </div>
-    <h1 class="text-light">Pizza List</h1>
     <hr>
     <div class="d-flex align-items-center justify-content-between">
         <h1>Pizza List</h1>
