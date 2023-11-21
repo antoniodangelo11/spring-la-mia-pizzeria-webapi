@@ -27,12 +27,12 @@ public class IngredientService {
         }
     }
 
-    public Ingredient save(Ingredient ingredient) throws IngredientNameUniqueException {
+    public void saveIngredient(Ingredient ingredient) throws IngredientNameUniqueException {
         if (ingredientRepository.existsByName(ingredient.getName())) {
             throw new IngredientNameUniqueException(ingredient.getName());
         }
         ingredient.setName(ingredient.getName().toLowerCase());
-        return ingredientRepository.save(ingredient);
+        ingredientRepository.save(ingredient);
     }
 
     public void deleteIngredient(Integer id) {

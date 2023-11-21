@@ -35,7 +35,7 @@ public class IngredientController {
             return "ingredients/form";
         }
         try {
-            ingredientService.save(formIngredient);
+            ingredientService.saveIngredient(formIngredient);
             return "redirect:/ingredients";
         } catch (IngredientNameUniqueException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
