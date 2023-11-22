@@ -24,7 +24,7 @@ public class SpecialOfferController {
     @GetMapping("/create")
     public String create(@RequestParam Integer pizzaId, Model model) {
         try {
-            model.addAttribute("special offer", specialOfferService.createSpecialOffer(pizzaId));
+            model.addAttribute("specialOffer", specialOfferService.createSpecialOffer(pizzaId));
             return "offers/form";
         } catch (PizzaNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
@@ -32,7 +32,7 @@ public class SpecialOfferController {
     }
 
     @PostMapping("/create")
-    public String doCreate(@Valid @ModelAttribute("special offer") SpecialOffer formSpecialOffer,
+    public String doCreate(@Valid @ModelAttribute("specialOffer") SpecialOffer formSpecialOffer,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "offers/form";
@@ -46,7 +46,7 @@ public class SpecialOfferController {
     public String edit(@PathVariable Integer id, Model model) {
         try {
             SpecialOffer specialOffer = specialOfferService.getSpecialOffer(id);
-            model.addAttribute("special offer", specialOffer);
+            model.addAttribute("specialOffer", specialOffer);
             return "offers/form";
         } catch (SpecialOfferNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
@@ -55,7 +55,7 @@ public class SpecialOfferController {
 
     @PostMapping("/edit/{id}")
     public String doEdit(@PathVariable Integer id,
-                         @Valid @ModelAttribute("special offer") SpecialOffer formSpecialOffer,
+                         @Valid @ModelAttribute("specialOffer") SpecialOffer formSpecialOffer,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "offers/form";
@@ -71,7 +71,7 @@ public class SpecialOfferController {
             specialOfferService.deleteSpecialOffer(specialOfferToDelete);
             redirectAttributes.addFlashAttribute(
                     "message",
-                    " Special Offer deleted!");
+                    "Special Offer deleted!");
             return "redirect:/pizzas/show/" + specialOfferToDelete.getPizza().getId();
         } catch (SpecialOfferNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
