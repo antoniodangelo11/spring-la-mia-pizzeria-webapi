@@ -33,7 +33,7 @@ public class Pizza {
     @Max(value = 255, message = "Length must be less than 255")
     private float price;
 
-    @OneToMany(mappedBy = "pizza")
+    @OneToMany(mappedBy = "pizza", orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<SpecialOffer> specialOffers = new  ArrayList<>();
 
@@ -41,7 +41,6 @@ public class Pizza {
     private List<Ingredient> ingredients;
 
     // GETTER E SETTER
-
 
     public List<Ingredient> getIngredients() {
         return ingredients;
