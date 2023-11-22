@@ -23,17 +23,16 @@ const renderPizza = (element) => {
   console.log(element);
   return `<div class="card shadow h-100">
     <div class="card-body">
-        <h5 class="card-title">${element.name}</h5>
-        <p class="card-text">${
-          element.description != "" ? element.description : "N.D."
-        }</p>
-        <div>
-            <img class="h-100 w-100" src="${element.photoUrl}" alt="">
-        </div>
-        <p>${element.price}€</p>
+      <h5 class="card-title">${element.name}</h5>
+      <p class="card-text">${
+        element.description != "" ? element.description : "N.D."
+      }</p>
+      <div>
+          <img class="h-100 w-100" src="${element.photoUrl}" alt="">
+      </div>
+      <p>${element.price}€</p>
     </div>
     <div class="card-footer">${renderIngredients(element.ingredients)}</div>
-    <br>
     <button class="btn btn-danger" onclick="deletePizza(${
       element.id
     })">Delete Pizza</button>
@@ -74,8 +73,7 @@ const deletePizza = async (pizzaId) => {
     const response = await fetch(`${apiUrl}/${pizzaId}`, {
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json',
-            // Aggiungi eventuali altri header necessari
+          'Content-Type': 'application/json',
         },
     });
 
@@ -93,4 +91,3 @@ const deletePizza = async (pizzaId) => {
 };
 
 getPizzas();
-
