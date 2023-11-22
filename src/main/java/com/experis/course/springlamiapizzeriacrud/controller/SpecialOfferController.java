@@ -15,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/discounts")
+@RequestMapping("/offers")
 public class SpecialOfferController {
 
     @Autowired
@@ -24,18 +24,18 @@ public class SpecialOfferController {
     @GetMapping("/create")
     public String create(@RequestParam Integer pizzaId, Model model) {
         try {
-            model.addAttribute("discount", specialOfferService.createSpecialOffer(pizzaId));
-            return "discounts/form";
+            model.addAttribute("special offer", specialOfferService.createSpecialOffer(pizzaId));
+            return "offers/form";
         } catch (PizzaNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
     @PostMapping("/create")
-    public String doCreate(@Valid @ModelAttribute("discount") SpecialOffer formSpecialOffer,
+    public String doCreate(@Valid @ModelAttribute("special offer") SpecialOffer formSpecialOffer,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "discounts/form";
+            return "offers/form";
         }
         SpecialOffer saveSpecialOffer = specialOfferService.saveSpecialOffer(formSpecialOffer);
         return "redirect:/pizzas/show/" + formSpecialOffer.getPizza().getId();
@@ -47,7 +47,7 @@ public class SpecialOfferController {
         try {
             SpecialOffer specialOffer = specialOfferService.getSpecialOffer(id);
             model.addAttribute("special offer", specialOffer);
-            return "discounts/form";
+            return "offers/form";
         } catch (SpecialOfferNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
@@ -58,7 +58,7 @@ public class SpecialOfferController {
                          @Valid @ModelAttribute("special offer") SpecialOffer formSpecialOffer,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "discounts/form";
+            return "offers/form";
         }
         SpecialOffer saveSpecialOffer = specialOfferService.saveSpecialOffer(formSpecialOffer);
         return "redirect:/pizzas/show/" + formSpecialOffer.getPizza().getId();
@@ -71,7 +71,7 @@ public class SpecialOfferController {
             specialOfferService.deleteSpecialOffer(specialOfferToDelete);
             redirectAttributes.addFlashAttribute(
                     "message",
-                    " Discount deleted!");
+                    " Special Offer deleted!");
             return "redirect:/pizzas/show/" + specialOfferToDelete.getPizza().getId();
         } catch (SpecialOfferNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());

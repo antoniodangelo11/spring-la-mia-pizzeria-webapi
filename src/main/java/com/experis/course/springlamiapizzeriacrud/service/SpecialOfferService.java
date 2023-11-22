@@ -21,11 +21,11 @@ public class SpecialOfferService {
     public SpecialOffer createSpecialOffer(Integer pizzaId) throws PizzaNotFoundException {
         Pizza pizza = pizzaRepository.findById(pizzaId).orElseThrow(()
                 -> new PizzaNotFoundException("Pizza with id " + pizzaId + " not found"));
-        SpecialOffer discount = new SpecialOffer();
-        discount.setStartDate(LocalDate.now());
-        discount.setEndDate(LocalDate.now().plusWeeks(1));
-        discount.setPizza(pizza);
-        return discount;
+        SpecialOffer specialOffer = new SpecialOffer();
+        specialOffer.setStartDate(LocalDate.now());
+        specialOffer.setEndDate(LocalDate.now().plusWeeks(1));
+        specialOffer.setPizza(pizza);
+        return specialOffer;
     }
 
     public SpecialOffer saveSpecialOffer(SpecialOffer specialOffer) {
