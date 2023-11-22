@@ -33,6 +33,10 @@ const renderPizza = (element) => {
         <p>${element.price}€</p>
     </div>
     <div class="card-footer">${renderIngredients(element.ingredients)}</div>
+    <br>
+    <button class="btn btn-danger" onclick="deletePizza(${
+      element.id
+    })">Delete Pizza</button>
   </div>`;
 };
 
@@ -64,4 +68,29 @@ const getPizzas = async () => {
   }
 };
 
+// Funzione per eliminare la pizza
+const deletePizza = async (pizzaId) => {
+  try {
+    const response = await fetch(`${apiUrl}/${pizzaId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            // Aggiungi eventuali altri header necessari
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error(`Errore durante la cancellazione della pizza con ID ${pizzaId}`);
+    }
+
+    console.log(`Pizza con ID ${pizzaId} eliminata con successo`);
+    // Puoi aggiornare la visualizzazione o eseguire altre azioni dopo la cancellazione
+    location.reload();
+  } catch (error) {
+    console.error(error.message);
+    // Gestisci l'errore in base alle tue esigenze
+}
+};
+
 getPizzas();
+
