@@ -10,15 +10,24 @@
     <script src="search.js" defer></script>
     <title>Spring Pizza</title>
 </head>
-<body>
+<body class="bg-dark text-light">
+
     <div class="container">
         <h1>Spring Pizza</h1>
-        <hr>
-        <button class="btn btn-secondary">
-            <a class="text-light" href="create.html">Create</a>
+        <button type="button" class="btn btn-primary mb-2">
+            <a href="create.html" class="text-decoration-none text-light">Create Pizza</a>
         </button>
-        <hr>
-        <div id="root"></div>
+
+        <div class="col-12 mt-2">
+            <div class="d-flex">
+                <input type="text" class="form-control rounded-end-0" id="searchBar">
+                <button class="btn btn-primary rounded-start-0" id="searchButton">
+                    Search
+                </button>
+            </div>
+        </div>
+
+        <div id="root" class="mt-4"></div>
     </div>
 </body>
 </html>

@@ -67,7 +67,6 @@ const getPizzas = async () => {
   }
 };
 
-// Funzione per eliminare la pizza
 const deletePizza = async (pizzaId) => {
   try {
     const response = await fetch(`${apiUrl}/${pizzaId}`, {
@@ -82,11 +81,9 @@ const deletePizza = async (pizzaId) => {
     }
 
     console.log(`Pizza con ID ${pizzaId} eliminata con successo`);
-    // Puoi aggiornare la visualizzazione o eseguire altre azioni dopo la cancellazione
     location.reload();
   } catch (error) {
     console.error(error.message);
-    // Gestisci l'errore in base alle tue esigenze
 }
 };
 
